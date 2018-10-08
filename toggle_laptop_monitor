@@ -1,0 +1,3 @@
+#!/bin/bash
+
+TODO: xrandr --current output vergleichen wenn LVDS-1 on und off

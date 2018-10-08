@@ -1,0 +1,11 @@
+#!/bin/bash
+
+#
+# Make a new note at ~/notes/ and compile to pdf-notes
+#
+
+NOTENAME="$HOME/notes/$(date +%d-%m-%y_%H:%M).rmd"
+if [ -d $HOME/notes ] && [ ! -f $NOTENAME ]; then
+    vim $NOTENAME
+
+

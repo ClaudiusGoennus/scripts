@@ -1,0 +1,7 @@
+#!/bin/bash
+
+###
+# A script that gets an rss feed and pipes it into less
+###
+
+

@@ -1,0 +1,36 @@
+#!/bin/bash
+
+###############################################################################
+# newscript: make a new script at ~/{s,S}cripts/ called $1 and open it in vim #
+# (or edit an existing one)                                                   #
+# $1 = script name                                                            #
+# $2 = optional group name, else wheel                                        #
+###############################################################################
+
+GRP="wheel"
+if [ -z "$1" ]; then 
+    echo "No script name specified!"
+    exit 1
+fi
+if [ -n "$2" ]; then 
+    GRP="$2" 
+fi
+
+if [ -d ${HOME}/scripts ]; then
+    touch "${HOME}/scripts/$1"
+    chown "$USER" "${HOME}/scripts/$1" 
+    chgrp "$GRP" "${HOME}/scripts/$1"
+    chmod ug+rwx "${HOME}/scripts/$1"
+    vim "$HOME/scripts/$1"
+    cp "$HOME/scripts/$1" "$HOME/repos/scripts"
+elif [ -d ${HOME}/Scripts ]; then
+    touch "${HOME}/Scripts/$1"
+    chown "${HOME}/Scripts/$1" "$USER"
+    chgrp "${HOME}/Scripts/$1" "$GRP"
+    chmod ug+rwx "${HOME}/Scripts/$1"
+    vim "$HOME/Scripts/$1"
+    cp "$HOME/Scripts/$1" "$HOME/repos/scripts"
+else
+    echo "No {s/S}cripts folder!"
+    exit 1
+fi

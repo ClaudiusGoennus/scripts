@@ -1,0 +1,7 @@
+#!/bin/bash
+
+# change all, changes owner of $1 to $2, group to $3 and gives perms
+
+chown $2 $1
+chgrp $3 $1
+chmod -R ug+rwx $1

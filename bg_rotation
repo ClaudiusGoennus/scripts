@@ -1,0 +1,33 @@
+#!/bin/bash
+
+#
+# This script iterates through backgrounds from a given folder
+# Pictures can be .jpg and .png
+# $1 = background dir 
+#
+# TODO add resolution checking (fill, scale, tile, etc...)
+#   > for small screen (laptop/16:9):
+#       - 1920x1080: bg-fill 
+#   > for big screen (21:9):
+#       - 
+# TODO add recursive dir searching
+#
+
+if [ -z "$1" ]; then
+    echo "No dir specified!"
+   exit 1
+fi
+dir="$1"
+dir=${dir%/} # remove ending slash, so it doesnt matter how its passed
+
+pictures=($(ls -1 "$dir" | grep -E ".+\.[jpg|png]"))
+
+i=1
+while true; do
+    pic=${pictures[i]}
+    feh --bg-scale "$dir/$pic" > /dev/null &
+    if [ $i -eq ${#pictures[*]} ]; then # (#) means count elems, (*) for selecting all
+        i=1
+    fi
+    sleep 3s
+done

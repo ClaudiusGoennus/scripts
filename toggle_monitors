@@ -1,0 +1,18 @@
+#!/bin/bash
+
+#
+# Meant to be run at startx, switches to external screen if connected and switches 
+# i3 and st configs to big_screen variants
+#
+# TODO: switch between big and samll screen
+
+intern=LVDS-1
+extern=DP-2
+
+if xrandr | grep "$extern disconnected"; then
+    xrandr --output "$extern" --off --output "$intern" --auto
+else
+    xrandr --output "$intern" --off --output "$extern" --auto
+fi
+
+feh --bg-scale "$BACKGROUND"
